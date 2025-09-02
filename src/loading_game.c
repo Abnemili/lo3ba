@@ -6,7 +6,7 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:03:28 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/02 09:29:03 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:41:15 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int init_rendering(t_map *map)
 }
 
 // Find and set initial player position
-static void setup_player(t_map *map)
+void setup_player(t_map *map)
 {
     printf("Setting up player...\n");
     
@@ -108,21 +108,6 @@ static void setup_player(t_map *map)
     map->player.player_x = TILE / 2;
     map->player.player_y = TILE / 2;
     map->player.angle = 0.0;
-}
-
-// Setup event handlers
-static void setup_events(t_map *map)
-{
-    printf("Setting up event handlers...\n");
-    
-    // Key press events
-    mlx_hook(map->win, 2, 1L<<0, handle_key_input, map);
-    
-    // Window close event
-    mlx_hook(map->win, 17, 1L<<17, handle_close, map);
-    
-    // Optional: Key release events for smooth movement
-    // mlx_hook(map->win, 3, 1L<<1, handle_key_release, map);
 }
 
 // Initial render

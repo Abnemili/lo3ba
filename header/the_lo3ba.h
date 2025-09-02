@@ -19,8 +19,9 @@
 # define PLAYER_COLOR 0x00FF00    /* Green */
 # define COLOR_WALL   0x4B0082    /* Indigo */
 # define COLOR_FREE   0x006600    /* Dark Green */
+#define ROTATION_SPEED 0.5  // degrees per frame
 
-# define MOVE_SPEED    8   // Pixels per keypress
+# define MOVE_SPEED    1   // Pixels per keypress
 # define PLAYER_SIZE   8   // Size of player square
 # define PLAYER_OFFSET 12  // Offset from tile corner
 
@@ -36,7 +37,7 @@
 # define KEY_A   97
 # define KEY_D   100
 
-# define RAY_NUM 106 
+# define RAY_NUM 320
 
 typedef struct s_ray
 {
@@ -53,6 +54,17 @@ typedef struct s_player
     double angle;       // Player view direction in degrees
 }   t_player;
 
+typedef struct s_key_state
+{
+    int w;
+    int a;
+    int s;
+    int d;
+    int left;    // Left arrow
+    int right;   // Right arrow
+    int esc;
+}   t_key_state;
+
 typedef struct s_map
 {
     void    *mlx;
@@ -67,7 +79,18 @@ typedef struct s_map
     int     height;
     t_ray   rays[RAY_NUM];
     t_player player;
+    t_key_state keys;
 }   t_map;
+
+
+// Event handling for smooth movement & rotation
+int     handle_key_press(int keycode, t_map *map);
+int     handle_key_release(int keycode, t_map *map);
+int     update_player(t_map *map);
+
+// Setup events (hook key press, release, and loop hook)
+void    setup_events(t_map *map);
+
 
 /* Parsing functions */
 t_map   *check_map(char *av);
@@ -80,7 +103,7 @@ void    check_walls(t_map *map);
 int map_height(char *av);
 t_map *init_map_height(int h);
 void fill_map_content(t_map *map, char *av);
-
+int is_valid_move(t_map *map, int new_x, int new_y);
 
 t_map *fill_map(char *av);
 
