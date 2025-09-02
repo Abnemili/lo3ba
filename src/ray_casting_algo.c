@@ -6,7 +6,7 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 10:47:23 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/02 10:56:10 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:56:13 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,9 +155,9 @@ void render_3d_view(t_map *game)
             
             int color;
             if (ray.hit_side == 0) // Vertical wall
-                color = 0xFF4B0082; // White
+                color = 0x404040; // White
             else // Horizontal wall  
-                color = 0xFF4B0082; // Light gray (darker for shading)
+                color = 0x404040; // Light gray (darker for shading)
             
             // Draw the wall slice
             for (int y = draw_start; y <= draw_end; y++)
