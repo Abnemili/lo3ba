@@ -13,6 +13,7 @@ SRCS = \
 	parsing/mini_libft.c \
 	src/main.c \
 	src/init.c \
+	src/init_utils.c\
 	src/loading_game.c \
 	src/handle_keys.c \
 	src/ray_casting_algo.c \

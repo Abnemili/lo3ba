@@ -6,7 +6,7 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 10:47:23 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/02 10:47:24 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 10:56:10 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ t_ray cast_single_ray_3d(t_map *game, double ray_angle)
 {
     t_ray ray = {0};
 
-    // Player's center position
+   
     double ray_x = game->player.player_x + PLAYER_OFFSET + PLAYER_SIZE / 2.0;
     double ray_y = game->player.player_y + PLAYER_OFFSET + PLAYER_SIZE / 2.0;
 
-    // Convert angle to radians
+ 
     double ray_angle_rad = DEG_TO_RAD(ray_angle);
     double ray_dx = cos(ray_angle_rad);
     double ray_dy = sin(ray_angle_rad);
 
-    // Map grid location
+ 
     int map_x = (int)(ray_x / TILE);
     int map_y = (int)(ray_y / TILE);
 
@@ -36,7 +36,7 @@ t_ray cast_single_ray_3d(t_map *game, double ray_angle)
     double side_dist_x, side_dist_y;
     int step_x, step_y;
 
-    // Calculate step and initial side_dist_x
+    
     if (ray_dx < 0)
     {
         step_x = -1;
@@ -48,7 +48,6 @@ t_ray cast_single_ray_3d(t_map *game, double ray_angle)
         side_dist_x = (map_x + 1.0 - ray_x / TILE) * delta_dist_x;
     }
 
-    // Calculate step and initial side_dist_y
     if (ray_dy < 0)
     {
         step_y = -1;
@@ -60,7 +59,6 @@ t_ray cast_single_ray_3d(t_map *game, double ray_angle)
         side_dist_y = (map_y + 1.0 - ray_y / TILE) * delta_dist_y;
     }
 
-    // DDA
     int hit = 0;
     int side = 0;
     while (!hit && map_x >= 0 && map_x < game->width && map_y >= 0 && map_y < game->height)
@@ -102,14 +100,13 @@ t_ray cast_single_ray_3d(t_map *game, double ray_angle)
             ray.wall_x = ray_x + raw_distance * ray_dx * TILE;
         }
 
-        // Fisheye correction
+ 
         double angle_diff = DEG_TO_RAD(ray_angle - game->player.angle);
-        // Normalize to [-PI, PI]
         while (angle_diff > M_PI) angle_diff -= 2 * M_PI;
         while (angle_diff < -M_PI) angle_diff += 2 * M_PI;
 
         double corrected_distance = raw_distance * cos(angle_diff);
-        ray.distance = corrected_distance * TILE;  // Now in pixels
+        ray.distance = corrected_distance * TILE;
         ray.hit_side = side;
     }
 
@@ -121,7 +118,7 @@ t_ray cast_single_ray_3d(t_map *game, double ray_angle)
 // 3D rendering function
 void render_3d_view(t_map *game)
 {
-    // Clear the screen first (draw ceiling and floor)
+
     for (int y = 0; y < SCREEN_HEIGHT; y++)
     {
         for (int x = 0; x < SCREEN_WIDTH; x++)
@@ -141,7 +138,6 @@ void render_3d_view(t_map *game)
     {
         double current_angle = start_angle + (x * angle_step);
         
-        // Normalize angle
         while (current_angle < 0) current_angle += 360;
         while (current_angle >= 360) current_angle -= 360;
         
@@ -149,18 +145,14 @@ void render_3d_view(t_map *game)
         
         if (ray.distance > 0)
         {
-            // Calculate wall height based on distance
-            int wall_height = (int)((TILE * SCREEN_HEIGHT) / ray.distance);// changeed this line 
+            int wall_height = (int)((TILE * SCREEN_HEIGHT) / ray.distance);
             
-            // Calculate drawing bounds
             int draw_start = (SCREEN_HEIGHT - wall_height) / 2;
             int draw_end = draw_start + wall_height;
 
-            // Clamp to screen bounds
             if (draw_start < 0) draw_start = 0;
             if (draw_end >= SCREEN_HEIGHT) draw_end = SCREEN_HEIGHT - 1;
             
-            // Choose wall color based on which side was hit
             int color;
             if (ray.hit_side == 0) // Vertical wall
                 color = 0xFF4B0082; // White
@@ -176,7 +168,6 @@ void render_3d_view(t_map *game)
     }
 }
 
-// Wrapper function to replace your cast_fov_rays
 void render_game_view(t_map *game)
 {
     render_3d_view(game);

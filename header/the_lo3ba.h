@@ -75,6 +75,15 @@ void    check_ext(char *name);
 void    check_shape(t_map *map);
 void    check_walls(t_map *map);
 
+
+
+int map_height(char *av);
+t_map *init_map_height(int h);
+void fill_map_content(t_map *map, char *av);
+
+
+t_map *fill_map(char *av);
+
 /* Image utilities */
 void    pixel_put_img(t_map *map, int x, int y, int color);
 
