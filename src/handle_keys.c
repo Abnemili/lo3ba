@@ -6,7 +6,7 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:03:40 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/02 11:45:45 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:52:51 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ void clear_player_area(t_map *map)
         x++;
     }
 }
-
 
 int handle_close(t_map *map)
 {
