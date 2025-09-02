@@ -25,8 +25,8 @@
 # define PLAYER_OFFSET 12  // Offset from tile corner
 
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600 
+#define SCREEN_WIDTH 800   // needs to be dynamiq based on map->height ant map->width
+#define SCREEN_HEIGHT 520 // needss to be configirate to dynamiq
 #define WALL_HEIGHT_FACTOR 100
 
 /* Key codes */
