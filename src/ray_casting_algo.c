@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_casting_algo.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/02 10:47:23 by abnemili          #+#    #+#             */
+/*   Updated: 2025/09/02 10:47:24 by abnemili         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../header/the_lo3ba.h"
 
 
@@ -138,7 +150,6 @@ void render_3d_view(t_map *game)
         if (ray.distance > 0)
         {
             // Calculate wall height based on distance
-            // int wall_height = (int)(WALL_HEIGHT_FACTOR * TILE / ray.distance);
             int wall_height = (int)((TILE * SCREEN_HEIGHT) / ray.distance);// changeed this line 
             
             // Calculate drawing bounds
