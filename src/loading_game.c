@@ -6,14 +6,11 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:03:28 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/01 23:37:58 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 09:29:03 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/the_lo3ba.h"
-// ================================
-// UPDATED LOAD_GAME FUNCTION
-// ================================
 
 void pixel_put_img(t_map *map, int x, int y, int color)
 {
@@ -30,7 +27,7 @@ void draw_square(t_map *map, int x, int y, int color)
 
     while (dy < TILE)
     {
-        int dx = 0;  // FIXED: was "dy = 0" causing infinite loop
+        int dx = 0;
         while (dx < TILE)
         {
             pixel_put_img(map, x * TILE + dx, y * TILE + dy, color);

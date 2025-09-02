@@ -138,8 +138,8 @@ void render_3d_view(t_map *game)
         if (ray.distance > 0)
         {
             // Calculate wall height based on distance
-            int wall_height = (int)(WALL_HEIGHT_FACTOR * TILE / ray.distance);
-            // int wall_height = (int)((TILE * SCREEN_HEIGHT) / ray.distance);// changeed this line 
+            // int wall_height = (int)(WALL_HEIGHT_FACTOR * TILE / ray.distance);
+            int wall_height = (int)((TILE * SCREEN_HEIGHT) / ray.distance);// changeed this line 
             
             // Calculate drawing bounds
             int draw_start = (SCREEN_HEIGHT - wall_height) / 2;
