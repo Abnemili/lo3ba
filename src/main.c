@@ -6,7 +6,7 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 09:28:38 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/01 23:04:50 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:18:11 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,25 +56,16 @@ int main(int ac, char **av)
 {
     t_map *map;
 
-    // Validate command line arguments
     validate_arguments(ac, av);
-
-    printf("Loading and validating map: %s\n", av[1]);
-
-    // Load, validate and check map (calls fill_map internally)
+    printf("Loading lmap o dakchi ta tma %s\n", av[1]);
     map = check_map(av[1]);
     if (!map)
     {
-        printf("Error: Failed to load or validate map\n");
+        printf("Error: Failed to load eewa hadchi li 3lta lah\n");
         exit(1);
     }
-
-    printf("Map validation successful: %dx%d\n", map->width, map->height);
-
-    // Start the game
+    printf("lmap tvalidat tiiiir bt** : %dx%d\n", map->width, map->height);
     load_game(map);
-
-    // Cleanup resources (not reached if mlx_loop is running)
     cleanup_map(map);
 
     return 0;

@@ -6,7 +6,7 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:03:40 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/02 11:52:51 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:10:58 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@ void clear_player_area(t_map *map)
 {
     int x = -1;
     int y;
-
+    int tile_x;
+    int tile_y;
+    int color;
+    
     while (x <= 1)
     {
         y = -1;
         while (y <= 1)
         {
-            int tile_x = (map->player.player_x + PLAYER_OFFSET + PLAYER_SIZE / 2) / TILE + x;
-            int tile_y = (map->player.player_y + PLAYER_OFFSET + PLAYER_SIZE / 2) / TILE + y;
+            tile_x = (map->player.player_x + PLAYER_OFFSET + PLAYER_SIZE / 2) / TILE + x;
+            tile_y = (map->player.player_y + PLAYER_OFFSET + PLAYER_SIZE / 2) / TILE + y;
 
             if (tile_x >= 0 && tile_x < map->width && tile_y >= 0 && tile_y < map->height)
             {
-                int color;
-
                 if (map->map[tile_y][tile_x] == '1')
                     color = COLOR_WALL;
                 else if (map->map[tile_y][tile_x] == '0')

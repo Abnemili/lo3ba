@@ -6,7 +6,7 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 09:44:32 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/02 10:53:33 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:12:38 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_map *init_map_height(int h)
     if (!map)
         exit(1);
 
-    // Initialize all struct members
+    // init map o dkchi
     map->height = h;
     map->width = 0;
     map->mlx = NULL;
@@ -62,7 +62,6 @@ t_map *init_map_height(int h)
     map->player.player_y = 0;
     map->player.angle = 0.0;
 
-    // Initialize rays array with a while loop
     i = 0;
     while (i < RAY_NUM)
     {

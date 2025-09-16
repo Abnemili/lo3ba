@@ -6,7 +6,7 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 10:47:23 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/02 11:56:13 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:20:03 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,40 @@
 t_ray cast_single_ray_3d(t_map *game, double ray_angle)
 {
     t_ray ray = {0};
+    // hona kaman nahtajo struct ofc wtf man 
+    double ray_x;
+    double ray_y;
+    double ray_angle_rad;
+    double ray_dx;
+    double ray_dy;
+    int map_x;
+    int map_y;
+    double delta_dist_x;
+    double delta_dist_y;
+    double side_dist_x;
+    double side_dist_y;
+    int step_x;
+    int step_y;
+    int hit;
+    int side;
+    double raw_distance;
+    double angle_diff;
+    double corrected_distance;
 
-   
-    double ray_x = game->player.player_x + PLAYER_OFFSET + PLAYER_SIZE / 2.0;
-    double ray_y = game->player.player_y + PLAYER_OFFSET + PLAYER_SIZE / 2.0;
+    // Initialize variables
+    ray_x = game->player.player_x + PLAYER_OFFSET + PLAYER_SIZE / 2.0;
+    ray_y = game->player.player_y + PLAYER_OFFSET + PLAYER_SIZE / 2.0;
 
- 
-    double ray_angle_rad = DEG_TO_RAD(ray_angle);
-    double ray_dx = cos(ray_angle_rad);
-    double ray_dy = sin(ray_angle_rad);
+    ray_angle_rad = DEG_TO_RAD(ray_angle);
+    ray_dx = cos(ray_angle_rad);
+    ray_dy = sin(ray_angle_rad);
 
- 
-    int map_x = (int)(ray_x / TILE);
-    int map_y = (int)(ray_y / TILE);
+    map_x = (int)(ray_x / TILE);
+    map_y = (int)(ray_y / TILE);
 
-    double delta_dist_x = fabs(1.0 / ray_dx);
-    double delta_dist_y = fabs(1.0 / ray_dy);
+    delta_dist_x = fabs(1.0 / ray_dx);
+    delta_dist_y = fabs(1.0 / ray_dy);
 
-    double side_dist_x, side_dist_y;
-    int step_x, step_y;
-
-    
     if (ray_dx < 0)
     {
         step_x = -1;
@@ -59,8 +72,9 @@ t_ray cast_single_ray_3d(t_map *game, double ray_angle)
         side_dist_y = (map_y + 1.0 - ray_y / TILE) * delta_dist_y;
     }
 
-    int hit = 0;
-    int side = 0;
+    hit = 0;
+    side = 0;
+
     while (!hit && map_x >= 0 && map_x < game->width && map_y >= 0 && map_y < game->height)
     {
         if (side_dist_x < side_dist_y)
@@ -85,8 +99,6 @@ t_ray cast_single_ray_3d(t_map *game, double ray_angle)
 
     if (hit)
     {
-        double raw_distance;
-
         if (side == 0)
         {
             raw_distance = (map_x - ray_x / TILE + (1 - step_x) / 2.0) / ray_dx;
@@ -100,18 +112,18 @@ t_ray cast_single_ray_3d(t_map *game, double ray_angle)
             ray.wall_x = ray_x + raw_distance * ray_dx * TILE;
         }
 
- 
-        double angle_diff = DEG_TO_RAD(ray_angle - game->player.angle);
+        angle_diff = DEG_TO_RAD(ray_angle - game->player.angle);
         while (angle_diff > M_PI) angle_diff -= 2 * M_PI;
         while (angle_diff < -M_PI) angle_diff += 2 * M_PI;
 
-        double corrected_distance = raw_distance * cos(angle_diff);
+        corrected_distance = raw_distance * cos(angle_diff);
         ray.distance = corrected_distance * TILE;
         ray.hit_side = side;
     }
 
     return ray;
 }
+
 
 
 

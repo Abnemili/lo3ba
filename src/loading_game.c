@@ -6,7 +6,7 @@
 /*   By: abnemili <abnemili@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 12:03:28 by abnemili          #+#    #+#             */
-/*   Updated: 2025/09/02 11:41:15 by abnemili         ###   ########.fr       */
+/*   Updated: 2025/09/02 13:21:41 by abnemili         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,25 +134,25 @@ void load_game(t_map *map)
     
     printf("Starting game initialization...\n");
     
-    // Step 1: Initialize MLX and create window
+    // awlan init MLX and create window
     if (!init_mlx_connection(map))
         exit(1);
     
-    // Step 2: Initialize rendering system
+    // and  Init rendering system
     if (!init_rendering(map))
         exit(1);
     
-    // Step 3: Setup player
+    // 3 Setup player
     setup_player(map);
     
-    // Step 4: Setup event handlers
+    // 4 Setup event handlers
     setup_events(map);
     
-    // Step 5: Initial render
+    // 5 Initial render
     initial_render(map);
     
-    printf("Game initialization complete. Starting main loop...\n");
-    printf("Controls: Arrow keys to rotate, WASD to move, ESC to exit\n");
+    printf("the lo3ba is loaded l3b la baghe tl3b \n");
+    printf("Controls:  WASD to move Arrow keys to rotate, ESC to ghyrhaaaa ajmi\n");
     
     // Start the game loop
     mlx_loop(map->mlx);
